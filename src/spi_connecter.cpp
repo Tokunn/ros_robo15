@@ -1,5 +1,5 @@
 #include "ros/ros.h"
-#include "std_msgs/Int8.h"
+#include "ros_robo15/Spi_cmd.h"
 
 #include <sstream>
 #include <stdlib.h>
@@ -15,16 +15,16 @@ class SpiRosTransfer
 {
     public:
         SpiRosTransfer() {
-            this->pub = this->n.advertise<std_msgs::Int8>("rxbuf", 1000);
+            this->pub = this->n.advertise<ros_robo15::Spi_cmd>("rxbuf", 1000);
             this->sub = this->n.subscribe("txbuf", 1000, &SpiRosTransfer::spi_transfer, this);
 
-            this->spi_motor = new SPI(BUS, CS_MOTOR, !SPI_CPOL | SPI_CPHA);
-            this->spi_sensor = new SPI(BUS, CS_SENSOR, !SPI_CPOL | SPI_CPHA);
+            /*this->spi_motor = new SPI(BUS, CS_MOTOR, !SPI_CPOL | SPI_CPHA);
+            this->spi_sensor = new SPI(BUS, CS_SENSOR, !SPI_CPOL | SPI_CPHA);*/
         }
 
         ~SpiRosTransfer() {
-            delete(spi_motor);
-            delete(spi_sensor);
+            /*delete(spi_motor);
+            delete(spi_sensor);*/
         }
 
     private:
@@ -33,12 +33,12 @@ class SpiRosTransfer
         ros::Publisher pub;
         ros::Subscriber sub;
 
-        void spi_transfer(const std_msgs::Int8::ConstPtr& txbuf_msg) {
-            ROS_INFO("Send data: [0x%x]", txbuf_msg->data);
-            std_msgs::Int8 rxbuf_msg;
+        void spi_transfer(const ros_robo15::Spi_cmd::ConstPtr& txbuf_msg) {
+            ROS_INFO("Send data: [0x%x]", txbuf_msg->spi_cmd);
+            ros_robo15::Spi_cmd rxbuf_msg;
             // TODO send txbuf_msg
-            //      recive rxbuf_msg
-            rxbuf_msg.data = txbuf_msg->data;
+            // TODO recive rxbuf_msg
+            rxbuf_msg.spi_cmd = txbuf_msg->spi_cmd;
             this->pub.publish(rxbuf_msg);
             ros::spinOnce();
         }

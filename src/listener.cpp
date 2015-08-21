@@ -1,10 +1,10 @@
 #include "ros/ros.h"
-#include "std_msgs/String.h"
 #include "std_msgs/Int8.h"
+#include "ros_robo15/Spi_cmd.h"
 
-void chatterCallback(const std_msgs::Int8::ConstPtr& msg)
+void chatterCallback(const ros_robo15::Spi_cmd::ConstPtr& msg)
 {
-  ROS_INFO("I heard: [0x%x]", msg->data);
+  ROS_INFO("I heard: [0x%x]", msg->spi_cmd);
 }
 
 int main(int argc, char **argv)
