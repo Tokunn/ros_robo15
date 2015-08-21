@@ -4,7 +4,7 @@
 
 void chatterCallback(const std_msgs::Int8::ConstPtr& msg)
 {
-  ROS_INFO("I heard: [%d]", msg->data);
+  ROS_INFO("I heard: [0x%x]", msg->data);
 }
 
 int main(int argc, char **argv)

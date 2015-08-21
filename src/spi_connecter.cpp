@@ -6,14 +6,25 @@
 
 #include "libspi.h"
 
+#define PACKET_SIZE_BYTE 1
+#define BUS 0
+#define CS_MOTOR 0
+#define CS_SENSOR 1
+
 class SpiRosTransfer
 {
     public:
         SpiRosTransfer() {
-            pub = n.advertise<std_msgs::Int8>("rxbuf", 1000);
-            //SpiRosTransfer spirostransfer_object;
-            //sub = n.subscribe("txbuf", 1000, &SpiRosTransfer::spi_transfer, &spirostransfer_object);
-            sub = n.subscribe("txbuf", 1000, &SpiRosTransfer::spi_transfer, this);
+            this->pub = this->n.advertise<std_msgs::Int8>("rxbuf", 1000);
+            this->sub = this->n.subscribe("txbuf", 1000, &SpiRosTransfer::spi_transfer, this);
+
+            this->spi_motor = new SPI(BUS, CS_MOTOR, !SPI_CPOL | SPI_CPHA);
+            this->spi_sensor = new SPI(BUS, CS_SENSOR, !SPI_CPOL | SPI_CPHA);
+        }
+
+        ~SpiRosTransfer() {
+            delete(spi_motor);
+            delete(spi_sensor);
         }
 
     private:
@@ -28,29 +39,19 @@ class SpiRosTransfer
             // TODO send txbuf_msg
             //      recive rxbuf_msg
             rxbuf_msg.data = txbuf_msg->data;
-            pub.publish(rxbuf_msg);
+            this->pub.publish(rxbuf_msg);
             ros::spinOnce();
         }
-};
 
-/*void spi_transfer(const std_msgs::Int8::ConstPtr& txbuf_msg)
-{
-    //ros::NodeHandle n;
-    //ros::Publisher rxbuf_pub = n.advertise<std_msgs::Int8>("rxbuf", 1000);
-    //std_msgs::Int8 rxbuf_msg;
-    //rxbuf_msg.data = txbuf_msg->data;
-    //ROS_INFO("Send data: [0x%x]", txbuf_msg->data);
-    //rxbuf_pub.publish(rxbuf_msg);
-    //ros::spinOnce();
-    //ROS_INFO("Recive Data:[0x%x]", rxbuf_msg.data);
-}*/
+        SPI *spi_motor;
+        SPI *spi_sensor;
+
+};
 
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "spi_connecter");
     SpiRosTransfer spirostransfer;
-    //ros::NodeHandle n;
-    //ros::Subscriber txbuf_sub = n.subscribe("txbuf", 1000, spi_transfer);
     ros::spin();
 
     return EXIT_SUCCESS;

@@ -102,10 +102,10 @@ generate_messages(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES ros_robo15
+    #INCLUDE_DIRS include
+    #LIBRARIES ros_robo15
   CATKIN_DEPENDS roscpp rospy std_msgs
-#  DEPENDS system_lib
+    #DEPENDS system_lib
 )
 
 ###########
@@ -121,9 +121,10 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(ros_robo15
+ add_library(ros_robo15
 #   src/${PROJECT_NAME}/ros_robo15.cpp
-# )
+    src/libspi.cpp
+ )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -131,7 +132,10 @@ include_directories(
 # add_dependencies(ros_robo15 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-add_executable(spi_connecter src/spi_connecter.cpp)
+add_executable(spi_connecter
+    src/spi_connecter.cpp
+    src/libspi.cpp
+)
 add_executable(talker src/talker.cpp)
 add_executable(listener src/listener.cpp)
 
