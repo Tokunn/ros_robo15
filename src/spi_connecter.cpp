@@ -11,7 +11,7 @@
 
 #define DEFAULT_CS 0
 
-//#define RPI
+#define RPI
 
 class SpiRosTransfer
 {
@@ -38,13 +38,15 @@ class SpiRosTransfer
         ros::Subscriber sub;
 
         void spi_transfer(const ros_robo15::Spi_cmd::ConstPtr& txbuf_msg) {
-            ROS_DEBUG("Send data: [0x%x]", txbuf_msg->spi_cmd);
             ros_robo15::Spi_cmd rxbuf_msg;
 #ifdef RPI
             // TODO send txbuf_msg
+            uint8_t *rxbuf = this->spi->transfer(PACKET_SIZE, &txbuf_msg->spi_cmd);
+            rxbuf_msg.spi_cmd = *rxbuf;
             // TODO recive rxbuf_msg
 #endif
-            rxbuf_msg.spi_cmd = txbuf_msg->spi_cmd;
+            ROS_DEBUG("transfer data: Send[0x%x] Recive[0x%x]",
+                    txbuf_msg->spi_cmd, rxbuf_msg.spi_cmd);
             this->pub.publish(rxbuf_msg);
             ros::spinOnce();
         }
