@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 
     msg.spi_cmd = 17;
 
-    ROS_INFO("0x%x", msg.spi_cmd);
+    ROS_DEBUG("0x%x", msg.spi_cmd);
     chatter_pub.publish(msg);
     ros::spinOnce();
 

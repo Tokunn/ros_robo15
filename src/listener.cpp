@@ -4,7 +4,7 @@
 
 void chatterCallback(const ros_robo15::Spi_cmd::ConstPtr& msg)
 {
-  ROS_INFO("I heard: [0x%x]", msg->spi_cmd);
+  ROS_DEBUG("I heard: [0x%x]", msg->spi_cmd);
 }
 
 int main(int argc, char **argv)
