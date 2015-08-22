@@ -17,11 +17,11 @@ class SpiRosTransfer
 {
     public:
         SpiRosTransfer(int cs) {
-            this->pub = this->n.advertise<ros_robo15::Spi_cmd>("rxbuf", 1000);
-            this->sub = this->n.subscribe("txbuf", 1000, &SpiRosTransfer::spi_transfer, this);
+            this->pub = this->n.advertise<ros_robo15::Spi_cmd>("recive_data", 1000);
+            this->sub = this->n.subscribe("send_data", 1000, &SpiRosTransfer::spi_transfer, this);
 
 #ifdef RPI
-            this->spi = new SPI(BUS, DEFAULT_CS, !SPI_CPOL | SPI_CPHA);
+            this->spi = new SPI(BUS, cs, !SPI_CPOL | SPI_CPHA);
 #endif
         }
 
@@ -41,8 +41,9 @@ class SpiRosTransfer
             ros_robo15::Spi_cmd rxbuf_msg;
 #ifdef RPI
             // TODO send txbuf_msg
-            uint8_t *rxbuf = this->spi->transfer(PACKET_SIZE_BYTE, &txbuf_msg->spi_cmd);
+            uint8_t *rxbuf = this->spi->transfer(PACKET_SIZE_BYTE, (uint8_t*)&txbuf_msg->spi_cmd);
             rxbuf_msg.spi_cmd = *rxbuf;
+            delete(rxbuf);
             // TODO recive rxbuf_msg
 #endif
             ROS_DEBUG("transfer data: Send[0x%x] Recive[0x%x]",
@@ -67,7 +68,9 @@ int main(int argc, char **argv)
     else {
         ROS_WARN("Not given arguments");
     }
+
     SpiRosTransfer spirostransfer(cs);
+
     ros::spin();
 
     return EXIT_SUCCESS;

@@ -1,1 +1,1 @@
-int8 spi_cmd
+uint8 spi_cmd

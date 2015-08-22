@@ -8,7 +8,7 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "talker");  // TODO
   ros::NodeHandle n;
-  ros::Publisher chatter_pub = n.advertise<ros_robo15::Spi_cmd>("txbuf", 1000);  // TODO
+  ros::Publisher chatter_pub = n.advertise<ros_robo15::Spi_cmd>("send_data", 1000);  // TODO
   ros::Rate loop_rate(10);  // TODO
   int count = 0;
   while (ros::ok())
