@@ -41,7 +41,7 @@ class SpiRosTransfer
             ros_robo15::Spi_cmd rxbuf_msg;
 #ifdef RPI
             // TODO send txbuf_msg
-            uint8_t *rxbuf = this->spi->transfer(PACKET_SIZE, &txbuf_msg->spi_cmd);
+            uint8_t *rxbuf = this->spi->transfer(PACKET_SIZE_BYTE, &txbuf_msg->spi_cmd);
             rxbuf_msg.spi_cmd = *rxbuf;
             // TODO recive rxbuf_msg
 #endif
