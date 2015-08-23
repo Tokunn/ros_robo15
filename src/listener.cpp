@@ -4,7 +4,7 @@
 
 void chatterCallback(const ros_robo15::Spi_cmd::ConstPtr& msg)
 {
-  ROS_DEBUG("I heard: [0x%x]", msg->spi_cmd);
+  ROS_INFO("I heard: [0x%x]", msg->spi_cmd);
 }
 
 int main(int argc, char **argv)
@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
   ros::NodeHandle n;
 
-  ros::Subscriber sub = n.subscribe("recive_data", 1000, chatterCallback);
+  ros::Subscriber sub = n.subscribe("/motor/recive_data", 1000, chatterCallback);
 
   ros::spin();
 

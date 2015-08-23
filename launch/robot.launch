@@ -7,9 +7,10 @@
     <group ns="motor">
         <node pkg="ros_robo15" name="motor_connecter"
             type="spi_connecter" args="0" output="screen" />
-        <node pkg="ros_robo15" name="listener" type="listener" output="screen" />
-        <node pkg="ros_robo15" name="talker" type="talker" output="screen" />
     </group>
+
+    <node pkg="ros_robo15" name="listener" type="listener" output="screen" />
+    <node pkg="ros_robo15" name="talker" type="talker" output="screen" />
 
     <group ns="sensor">
         <node pkg="ros_robo15" name="sensor_connecter"
