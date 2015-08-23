@@ -9,11 +9,16 @@
             type="spi_connecter" args="0" output="screen" />
     </group>
 
-    <node pkg="ros_robo15" name="listener" type="listener" output="screen" />
-    <node pkg="ros_robo15" name="talker" type="talker" output="screen" />
-
     <group ns="sensor">
         <node pkg="ros_robo15" name="sensor_connecter"
             type="spi_connecter" args="1" output="screen" />
     </group>
+
+    <group ns="debug">
+        <remap from="send_data" to="/motor/send_data"/>
+        <remap from="recive_data" to="/motor/recive_data"/>
+        <node pkg="ros_robo15" name="listener" type="listener" output="screen" />
+        <node pkg="ros_robo15" name="talker" type="talker" output="screen" />
+    </group>
+
 </launch>

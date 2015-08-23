@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
   ros::NodeHandle n;
 
-  ros::Subscriber sub = n.subscribe("/motor/recive_data", 1000, chatterCallback);
+  ros::Subscriber sub = n.subscribe("recive_data", 1000, chatterCallback);
 
   ros::spin();
 
