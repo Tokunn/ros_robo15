@@ -40,11 +40,11 @@ class SpiRosTransfer
         void spi_transfer(const ros_robo15::Spi_cmd::ConstPtr& txbuf_msg) {
             ros_robo15::Spi_cmd rxbuf_msg;
 #ifdef RPI
-            // TODO send txbuf_msg
+            // send txbuf_msg
             uint8_t *rxbuf = this->spi->transfer(PACKET_SIZE_BYTE, (uint8_t*)&txbuf_msg->spi_cmd);
             rxbuf_msg.spi_cmd = *rxbuf;
             delete(rxbuf);
-            // TODO recive rxbuf_msg
+            // recive rxbuf_msg
 #endif
             ROS_DEBUG("transfer data: Send[0x%x] Recive[0x%x]",
                     txbuf_msg->spi_cmd, rxbuf_msg.spi_cmd);

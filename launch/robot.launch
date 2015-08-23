@@ -3,6 +3,8 @@
 <launch>
     <env name="ROSCONSOLE_CONFIG_FILE"
         value="$(find ros_robo15)/config/rosconsole.conf" />
+    <!--<env name="PYTHONPATH"
+        value="$(env PYTHONPATH):$(find ros_robo15)/script/" />-->
 
     <group ns="motor">
         <node pkg="ros_robo15" name="motor_connecter"
@@ -14,7 +16,11 @@
             type="spi_connecter" args="1" output="screen" />
     </group>
 
-    <group ns="debug">
+    <group ns="gamepad">
+        <node pkg="ros_robo15" name="gamepad_node" type="gamepad_node.py" output="screen" />
+    </group>
+
+    <group ns="spi_debug">
         <remap from="send_data" to="/motor/send_data"/>
         <remap from="recive_data" to="/motor/recive_data"/>
         <node pkg="ros_robo15" name="listener" type="listener" output="screen" />

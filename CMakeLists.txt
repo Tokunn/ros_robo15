@@ -48,6 +48,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   Spi_cmd.msg
+  Gamepad_cmd.msg
 #   Message1.msg
 #   Message2.msg
 )
