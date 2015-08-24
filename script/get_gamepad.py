@@ -20,6 +20,9 @@ class LogicoolGamepad():
         self.joys = pygame.joystick.Joystick(0)
         self.joys.init()
 
+    def __del__(self):
+        pygame.quit()
+
     def update(self):
         self.eventlist = pygame.event.get()
 
