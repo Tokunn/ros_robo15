@@ -11,7 +11,7 @@
 
 #define DEFAULT_CS 0
 
-//#define RPI
+#define RPI
 
 class SpiRosTransfer
 {
