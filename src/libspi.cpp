@@ -1,3 +1,4 @@
+#include "ros/ros.h"
 #include "libspi.h"
 #include <stdio.h>
 #include <sstream>
@@ -20,7 +21,7 @@ SPI::SPI( int bus, int ce, uint8_t mode )
 	if( ioctl(this->fd, SPI_IOC_WR_MODE, &mode) < 0 ) {
 		throw SPIException(string( "SPI_IOC_WR_MODE failed"));
 	}
-	
+
 	// パラメータ初期値セット
 	this->bits_per_word = 8;	// 8ビット
  	this->cs_change = LOW;		// Active Low
@@ -60,6 +61,7 @@ uint8_t *SPI::transfer( int len , uint8_t *txbuf)
 	int r = ioctl( this->fd, SPI_IOC_MESSAGE(1), &send );
 	if( r < 1 ) {
 		delete(rxbuf);
+        ROS_ERROR("ioctl failed");
 		throw SPIException(string("SPI transfer error"));
 	}
 	return rxbuf;
