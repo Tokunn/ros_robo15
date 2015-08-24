@@ -139,6 +139,10 @@ add_executable(spi_connecter
 )
 add_executable(talker src/talker.cpp)
 add_executable(listener src/listener.cpp)
+add_executable(debug_spi_node
+    src/debug_spi_node.cpp
+    src/libspi.cpp
+)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
@@ -152,6 +156,9 @@ add_executable(listener src/listener.cpp)
    ${catkin_LIBRARIES}
  )
  target_link_libraries(listener
+   ${catkin_LIBRARIES}
+ )
+ target_link_libraries(debug_spi_node
    ${catkin_LIBRARIES}
  )
 
