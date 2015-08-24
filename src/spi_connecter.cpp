@@ -53,7 +53,7 @@ class SpiRosTransfer
         }
 
         void spi_transfer_debug(const ros_robo15::Spi_cmd::ConstPtr& txbuf_msg) {
-            uint8_t txbuf_debug[PACKET_SIZE_BYTE];
+            /*uint8_t txbuf_debug[PACKET_SIZE_BYTE];
             txbuf_debug[0] = 0x16;
             uint8_t *rxbuf = this->spi->transfer(PACKET_SIZE_BYTE, txbuf_debug);
             ros_robo15::Spi_cmd rxbuf_msg;
@@ -62,7 +62,15 @@ class SpiRosTransfer
             ROS_DEBUG("transfer data: Send[0x%x] Recive[0x%x]",
                     txbuf_debug[0], rxbuf_msg.spi_cmd);
             this->pub.publish(rxbuf_msg);
-            ros::spinOnce();
+            ros::spinOnce();*/
+
+            uint8_t packet_debug[PACKET_SIZE_BYTE] = {0x6};
+            SPI *spi_debug = new SPI(BUS, DEFAULT_CS, !SPI_CPOL | SPI_CPHA);
+            uint8_t *rxbuf_debug = spi->transfer(PACKET_SIZE_BYTE, packet_debug);
+
+            ROS_INFO("Send:0x%x \t Recive:0x%x", packet_debug[0], rxbuf_debug[0]);
+
+            delete(rxbuf_debug); delete(spi_debug);
         }
 
         SPI *spi;
