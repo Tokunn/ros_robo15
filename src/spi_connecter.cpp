@@ -64,13 +64,13 @@ class SpiRosTransfer
             this->pub.publish(rxbuf_msg);
             ros::spinOnce();*/
 
-            uint8_t packet_debug[PACKET_SIZE_BYTE] = {0x6};
+            /*uint8_t packet_debug[PACKET_SIZE_BYTE] = {0x6};
             SPI *spi_debug = new SPI(BUS, DEFAULT_CS, !SPI_CPOL | SPI_CPHA);
             uint8_t *rxbuf_debug = spi->transfer(PACKET_SIZE_BYTE, packet_debug);
 
             ROS_INFO("Send:0x%x \t Recive:0x%x", packet_debug[0], rxbuf_debug[0]);
 
-            delete(rxbuf_debug); delete(spi_debug);
+            delete(rxbuf_debug); delete(spi_debug);*/
         }
 
         SPI *spi;
@@ -80,6 +80,15 @@ class SpiRosTransfer
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "spi_connecter");
+    while (true) {
+            uint8_t packet_debug[PACKET_SIZE_BYTE] = {0x6};
+            SPI *spi_debug = new SPI(BUS, DEFAULT_CS, !SPI_CPOL | SPI_CPHA);
+            uint8_t *rxbuf_debug = spi_debug->transfer(PACKET_SIZE_BYTE, packet_debug);
+
+            ROS_INFO("Send:0x%x \t Recive:0x%x", packet_debug[0], rxbuf_debug[0]);
+
+            delete(rxbuf_debug); delete(spi_debug);
+    }
 
     int cs = DEFAULT_CS;
     if (argc > 1) {
