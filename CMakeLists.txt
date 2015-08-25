@@ -137,6 +137,9 @@ add_executable(spi_connecter
     src/spi_connecter.cpp
     src/libspi.cpp
 )
+add_executable(gamepad_cpp
+    src/gamepad_cpp.cpp
+)
 add_executable(talker src/talker.cpp)
 add_executable(listener src/listener.cpp)
 add_executable(debug_spi_node
@@ -150,6 +153,9 @@ add_executable(debug_spi_node
 
 ## Specify libraries to link a library or executable target against
  target_link_libraries(spi_connecter
+   ${catkin_LIBRARIES}
+ )
+ target_link_libraries(gamepad_cpp
    ${catkin_LIBRARIES}
  )
  target_link_libraries(talker
