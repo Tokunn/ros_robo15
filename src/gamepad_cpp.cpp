@@ -45,8 +45,6 @@ int main(int argc, char **argv) {
 
     ros::Rate loop_rate(50);
     
-    ros_robo15::Gamepad_cmd gamepad_cmd;
-
     while (ros::ok()) {
 
         struct js_event event;
@@ -64,6 +62,13 @@ int main(int argc, char **argv) {
                     break;
             }
         }
+        
+        ros_robo15::Gamepad_cmd gamepad_cmd;
+
+        gamepad_cmd.left_axis_x = stick_data[LEFT_STICK_X];
+        gamepad_cmd.left_axis_y = stick_data[LEFT_STICK_Y];
+        gamepad_cmd.right_axis_x = stick_data[RIGHT_STICK_X];
+        gamepad_cmd.right_axis_y = stick_data[RIGHT_STICK_Y];
 
         gamepad_cpp_pub.publish(gamepad_cmd);
 
