@@ -65,13 +65,30 @@ int main(int argc, char **argv) {
         
         ros_robo15::Gamepad_cmd gamepad_cmd;
 
-        ROS_INFO("left axis x %d", stick_data[LEFT_STICK_X]);
-
         gamepad_cmd.left_axis_x = stick_data[LEFT_STICK_X];
         gamepad_cmd.left_axis_y = stick_data[LEFT_STICK_Y];
         gamepad_cmd.right_axis_x = stick_data[RIGHT_STICK_X];
         gamepad_cmd.right_axis_y = stick_data[RIGHT_STICK_Y];
-        gamepad_cmd.button_x = true;
+
+        gamepad_cmd.button_x = button_data[BUTTON_X];
+        gamepad_cmd.button_a = button_data[BUTTON_A];
+        gamepad_cmd.button_b = button_data[BUTTON_B];
+        gamepad_cmd.button_y = button_data[BUTTON_Y];
+
+        gamepad_cmd.hat_x = stick_data[CROSS_STICK_X];
+        gamepad_cmd.hat_y = stick_data[CROSS_STICK_Y];
+
+        gamepad_cmd.left_bumper = button_data[BUTTON_LB];
+        gamepad_cmd.right_bumper = button_data[BUTTON_RB];
+
+        gamepad_cmd.left_trigger = button_data[BUTTON_LT];
+        gamepad_cmd.right_trigger = button_data[BUTTON_RT];
+
+        gamepad_cmd.button_back = button_data[BUTTON_BACK];
+        gamepad_cmd.button_start = button_data[BUTTON_START];
+
+        gamepad_cmd.left_axis_push = button_data[BUTTON_STICKLEFT];
+        gamepad_cmd.right_axis_push = button_data[BUTTON_STICKRIGHT];
 
         gamepad_cpp_pub.publish(gamepad_cmd);
 
