@@ -6,7 +6,7 @@
     <!--<env name="PYTHONPATH"
         value="$(env PYTHONPATH):$(find ros_robo15)/script/" />-->
 
-    <group ns="motor">
+    <!--<group ns="motor">
         <node pkg="ros_robo15" name="motor_connecter"
             type="spi_connecter" args="0" output="screen" />
     </group>
@@ -14,22 +14,22 @@
     <group ns="sensor">
         <node pkg="ros_robo15" name="sensor_connecter"
             type="spi_connecter" args="1" output="screen" />
-    </group>
+    </group>-->
 
     <group ns="gamepad">
         <node pkg="ros_robo15" name="gamepad_node"
             type="gamepad_cpp" output="screen" />
     </group>
 
-    <group ns="gamepad">
+    <!--<group ns="gamepad">
         <node pkg="ros_robo15" name="gamepad_node" type="gamepad_node.py" output="screen" />
-    </group>
+    </group>-->
 
-    <group ns="spi_debug">
+    <!--<group ns="spi_debug">
         <remap from="send_data" to="/motor/send_data"/>
         <remap from="recive_data" to="/motor/recive_data"/>
         <node pkg="ros_robo15" name="listener" type="listener" output="screen" />
         <node pkg="ros_robo15" name="talker" type="talker" output="screen" />
-    </group>
+    </group>-->
 
 </launch>
