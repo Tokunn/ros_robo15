@@ -65,7 +65,7 @@ int main(int argc, char **argv) {
         
         ros_robo15::Gamepad_cmd gamepad_cmd;
 
-        ROS_INFO("left axis x %d", stick_data[LEFT_STICK_X];
+        ROS_INFO("left axis x %d", stick_data[LEFT_STICK_X]);
 
         gamepad_cmd.left_axis_x = 2;//stick_data[LEFT_STICK_X];
         gamepad_cmd.left_axis_y = 2;//stick_data[LEFT_STICK_Y];
