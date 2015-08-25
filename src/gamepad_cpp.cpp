@@ -35,7 +35,8 @@
 int main(int argc, char **argv) {
     ros::init(argc, argv, "gamepad_cpp");
 
-    int fd = open("/dev/input/js0", O_RDONLY);
+    int fd = open("/dev/input/js0", O_NONBLOCK);
+    //int fd = open("/dev/input/js0", O_RDONLY);
     unsigned char button_data[BUTTON_DATA_MAX];
     float stick_data[STICK_DATA_MAX];
 
