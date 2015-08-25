@@ -67,10 +67,10 @@ int main(int argc, char **argv) {
 
         ROS_INFO("left axis x %d", stick_data[LEFT_STICK_X]);
 
-        gamepad_cmd.left_axis_x = 2;//stick_data[LEFT_STICK_X];
-        gamepad_cmd.left_axis_y = 2;//stick_data[LEFT_STICK_Y];
-        gamepad_cmd.right_axis_x = 2;//stick_data[RIGHT_STICK_X];
-        gamepad_cmd.right_axis_y = 2;//stick_data[RIGHT_STICK_Y];
+        gamepad_cmd.left_axis_x = stick_data[LEFT_STICK_X];
+        gamepad_cmd.left_axis_y = stick_data[LEFT_STICK_Y];
+        gamepad_cmd.right_axis_x = stick_data[RIGHT_STICK_X];
+        gamepad_cmd.right_axis_y = stick_data[RIGHT_STICK_Y];
         gamepad_cmd.button_x = true;
 
         gamepad_cpp_pub.publish(gamepad_cmd);
