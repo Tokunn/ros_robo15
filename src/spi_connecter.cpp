@@ -90,6 +90,8 @@ int main(int argc, char **argv)
         ROS_WARN("Not given arguments");
     }
 
+    ROS_DEBUG("MAKE SpiRosTransfer");
+
     SpiRosTransfer spirostransfer(cs);
 
     ros::spin();
