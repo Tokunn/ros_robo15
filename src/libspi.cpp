@@ -8,7 +8,6 @@
 
 SPI::SPI( int bus, int ce, uint8_t mode )
 {
-    ROS_INFO("SPI::SPI");
 	std::stringstream devname;
 	
 	devname <<  SPIDEV_PREFIX << bus << "." << ce;
