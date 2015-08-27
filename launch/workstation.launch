@@ -3,6 +3,7 @@
 <launch>
     <env name="ROSCONSOLE_CONFIG_FILE"
         value="$(find ros_robo15)/config/rosconsole.conf" />
+    <env name="ROS_IP" value="172.16.14.114" />
     <!--<env name="ROS_MASTER_URI"
         value="http://172.16.14.245:11311" />-->
 
