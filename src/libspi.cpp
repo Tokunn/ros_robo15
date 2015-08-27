@@ -11,14 +11,18 @@ SPI::SPI( int bus, int ce, uint8_t mode )
 	std::stringstream devname;
 	
 	devname <<  SPIDEV_PREFIX << bus << "." << ce;
-	
+
+    errno = 0;
 	this->fd = open(devname.str().c_str(), O_RDWR);
 	if( this->fd < 0 ) {
+        ROS_ERROR("device open failed ErrorNo: %d", errno);
 		throw SPIException(string("Can't open spidev: ") + devname.str() );
 	}
 	
 	// SPIモードセット
+    errno = 0;
 	if( ioctl(this->fd, SPI_IOC_WR_MODE, &mode) < 0 ) {
+        ROS_ERROR("ioctl mode set failed ErrorNo: %d", errno);
 		throw SPIException(string( "SPI_IOC_WR_MODE failed"));
 	}
 
