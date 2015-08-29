@@ -15,7 +15,7 @@ void send_udp(const ros_robo15::Spi_cmd::ConstPtr& txbuf_msg) {
     struct sockaddr_in addr;
     addr.sin_family = AF_INET;
     addr.sin_port = htons(4000);
-    addr.sin_addr.s_addr = inet_addr("localhost");
+    addr.sin_addr.s_addr = inet_addr("172.16.14.224");
 
 
     sendto(sock, &txbuf_msg->spi_cmd, 1, 0, (struct sockaddr *)&addr, sizeof(addr));
