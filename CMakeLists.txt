@@ -140,6 +140,9 @@ add_executable(spi_connecter
     src/spi_connecter.cpp
     src/libspi.cpp
 )
+add_executable(nw_spi_connecter
+    src/nw_spi_connecter.cpp
+)
 add_executable(gamepad_cpp
     src/gamepad_cpp.cpp
 )
@@ -149,6 +152,9 @@ add_executable(debug_spi_node
     src/debug_spi_node.cpp
     src/libspi.cpp
 )
+add_executable(temp_center_node
+    src/temp_center_node.cpp
+)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
@@ -156,6 +162,9 @@ add_executable(debug_spi_node
 
 ## Specify libraries to link a library or executable target against
  target_link_libraries(spi_connecter
+   ${catkin_LIBRARIES}
+ )
+ target_link_libraries(nw_spi_connecter
    ${catkin_LIBRARIES}
  )
  target_link_libraries(gamepad_cpp
@@ -168,6 +177,9 @@ add_executable(debug_spi_node
    ${catkin_LIBRARIES}
  )
  target_link_libraries(debug_spi_node
+   ${catkin_LIBRARIES}
+ )
+ target_link_libraries(temp_center_node
    ${catkin_LIBRARIES}
  )
 

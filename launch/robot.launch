@@ -4,33 +4,30 @@
     <env name="ROSCONSOLE_CONFIG_FILE"
         value="$(find ros_robo15)/config/rosconsole.conf" />
     <env name="ROS_IP" value="172.16.14.224" />
-    <!--<env name="PYTHONPATH"
-        value="$(env PYTHONPATH):$(find ros_robo15)/script/" />-->
 
     <group ns="motor">
         <node pkg="ros_robo15" name="motor_connecter"
-            type="spi_connecter" args="0" output="screen" />
+            type="nw_spi_connecter" args="0" output="screen" />
     </group>
 
-    <group ns="sensor">
+    <!--<group ns="sensor">
         <node pkg="ros_robo15" name="sensor_connecter"
-            type="spi_connecter" args="1" output="screen" />
-    </group>
+            type="nw_spi_connecter" args="1" output="screen" />
+    </group>-->
 
     <group ns="gamepad">
         <node pkg="ros_robo15" name="gamepad_node"
             type="gamepad_cpp" output="screen" />
     </group>
 
-    <!--<group ns="gamepad">
-        <node pkg="ros_robo15" name="gamepad_node" type="gamepad_node.py" output="screen" />
-    </group>-->
-
     <group ns="spi_debug">
         <remap from="send_data" to="/motor/send_data"/>
-        <remap from="recive_data" to="/motor/recive_data"/>
-        <node pkg="ros_robo15" name="listener" type="listener" output="screen" />
+        <remap from="gamepad_cmd" to="/gamepad/gamepad"/>
+        <!--<remap from="recive_data" to="/motor/recive_data"/>
+        <node pkg="ros_robo15" name="listener" type="listener" output="screen" />-->
         <node pkg="ros_robo15" name="talker" type="talker" output="screen" />
+        <node pkg="ros_robo15" name="temp_center_node"
+            type="temp_center_node" output="screen"/>
     </group>
 
 </launch>
