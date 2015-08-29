@@ -6,6 +6,7 @@
     <env name="ROS_IP" value="172.16.14.224" />
 
     <group ns="motor">
+        <remap from="send_data" to="/send_data"/>
         <node pkg="ros_robo15" name="motor_connecter"
             type="nw_spi_connecter" args="0" output="screen" />
     </group>
@@ -16,6 +17,7 @@
     </group>-->
 
     <group ns="gamepad">
+        <remap from="gamepad_cmd" to="/gamepad_cmd"/>
         <node pkg="ros_robo15" name="gamepad_node"
             type="gamepad_cpp" output="screen" />
     </group>
