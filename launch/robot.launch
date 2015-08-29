@@ -23,8 +23,8 @@
     </group>
 
     <group ns="spi_debug">
-        <remap from="gamepad_cmd" to="/gamepad/gamepad_cmd"/>
-        <remap from="send_data" to="/motor/send_data"/>
+        <remap from="gamepad_cmd" to="/gamepad_cmd"/>
+        <remap from="send_data" to="/send_data"/>
         <!--<remap from="recive_data" to="/motor/recive_data"/>
         <node pkg="ros_robo15" name="listener" type="listener" output="screen" />
         <node pkg="ros_robo15" name="talker" type="talker" output="screen" />-->
