@@ -3,7 +3,7 @@
 <launch>
     <env name="ROSCONSOLE_CONFIG_FILE"
         value="$(find ros_robo15)/config/rosconsole.conf" />
-    <env name="ROS_IP" value="172.16.14.224" />
+    <env name="ROS_IP" value="172.16.14.104" />
 
     <group ns="motor">
         <remap from="send_data" to="/send_data"/>
