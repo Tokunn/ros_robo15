@@ -136,24 +136,28 @@ include_directories(
 #)
 
 ## Declare a C++ executable
-add_executable(spi_connecter
-    src/spi_connecter.cpp
-    src/libspi.cpp
-)
+#add_executable(spi_connecter
+#    src/spi_connecter.cpp
+#    src/libspi.cpp
+#)
 add_executable(nw_spi_connecter
     src/nw_spi_connecter.cpp
 )
 add_executable(gamepad_cpp
     src/gamepad_cpp.cpp
 )
-add_executable(talker src/talker.cpp)
-add_executable(listener src/listener.cpp)
-add_executable(debug_spi_node
-    src/debug_spi_node.cpp
-    src/libspi.cpp
-)
-add_executable(temp_center_node
-    src/temp_center_node.cpp
+#add_executable(talker src/talker.cpp)
+#add_executable(listener src/listener.cpp)
+#add_executable(debug_spi_node
+#    src/debug_spi_node.cpp
+#    src/libspi.cpp
+#)
+#add_executable(temp_center_node
+#    src/temp_center_node.cpp
+#)
+add_executable(conv_cmd
+    src/conv_cmd.cpp
+    src/gamepad_cmd.cpp
 )
 
 ## Add cmake target dependencies of the executable
@@ -161,27 +165,30 @@ add_executable(temp_center_node
 # add_dependencies(ros_robo15_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(spi_connecter
-   ${catkin_LIBRARIES}
- )
+# target_link_libraries(spi_connecter
+#   ${catkin_LIBRARIES}
+# )
  target_link_libraries(nw_spi_connecter
    ${catkin_LIBRARIES}
  )
  target_link_libraries(gamepad_cpp
    ${catkin_LIBRARIES}
  )
- target_link_libraries(talker
+ target_link_libraries(conv_cmd
    ${catkin_LIBRARIES}
  )
- target_link_libraries(listener
-   ${catkin_LIBRARIES}
- )
- target_link_libraries(debug_spi_node
-   ${catkin_LIBRARIES}
- )
- target_link_libraries(temp_center_node
-   ${catkin_LIBRARIES}
- )
+ #target_link_libraries(talker
+ #${catkin_LIBRARIES}
+ #)
+ #target_link_libraries(listener
+ #  ${catkin_LIBRARIES}
+ #)
+ #target_link_libraries(debug_spi_node
+ #  ${catkin_LIBRARIES}
+ #)
+ #target_link_libraries(temp_center_node
+ #  ${catkin_LIBRARIES}
+ #)
 
 #############
 ## Install ##

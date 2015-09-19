@@ -3,7 +3,7 @@
 <launch>
     <env name="ROSCONSOLE_CONFIG_FILE"
         value="$(find ros_robo15)/config/rosconsole.conf" />
-    <env name="ROS_IP" value="172.16.14.114" />
+    <!--<env name="ROS_IP" value="172.16.14.114" />-->
 
     <group ns="motor">
         <remap from="send_data" to="/send_data"/>
@@ -22,14 +22,21 @@
             type="gamepad_cpp" output="screen" />
     </group>
 
-    <group ns="spi_debug">
+    <group ns="cmd">
         <remap from="gamepad_cmd" to="/gamepad_cmd"/>
         <remap from="send_data" to="/send_data"/>
+        <node pkg="ros_robo15" name="conv_cmd"
+            type="conv_cmd" output="screen" />
+    </group>
+
+    <!--<group ns="spi_debug">
+        <remap from="gamepad_cmd" to="/gamepad_cmd"/>
+        <remap from="send_data" to="/send_data"/>-->
         <!--<remap from="recive_data" to="/motor/recive_data"/>
         <node pkg="ros_robo15" name="listener" type="listener" output="screen" />
         <node pkg="ros_robo15" name="talker" type="talker" output="screen" />-->
-        <node pkg="ros_robo15" name="temp_center_node"
+        <!--<node pkg="ros_robo15" name="temp_center_node"
             type="temp_center_node" output="screen"/>
-    </group>
+    </group>-->
 
 </launch>

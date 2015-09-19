@@ -2,6 +2,8 @@
 #include "ros_robo15/Gamepad_cmd.h"
 #include "ros_robo15/Spi_cmd.h"
 
+#include "gamepad_cmd.h"
+
 #include <sstream>
 #include <stdlib.h>
 
@@ -19,10 +21,14 @@ class TempCenterNode
         ros::Publisher pub;
         ros::Subscriber sub;
 
-        void cmd_temp_transfer(const ros_robo15::Gamepad_cmd::ConstPtr& gamepad_cmd_buf) {
+        void cmd_temp_transfer(const ros_robo15::Gamepad_cmd::ConstPtr& p_gamepad_cmd_buf) {
+            ros_robo15::Gamepad_cmd gamepad_cmd_buf = *p_gamepad_cmd_buf;
             ros_robo15::Spi_cmd txbuf_msg;
-            txbuf_msg.spi_cmd = (uint8_t)gamepad_cmd_buf->button_x;
-            ROS_DEBUG("publish data: %d", txbuf_msg.spi_cmd);
+            txbuf_msg.spi_cmd = (uint8_t)makeFirCmd(gamepad_cmd_buf);
+            //txbuf_msg.spi_cmd = (uint8_t)gamepad_cmd_buf->button_x; // TODO
+            //ROS_DEBUG("publish data: %d", txbuf_msg.spi_cmd);       // TODO
+            this->pub.publish(txbuf_msg);
+            txbuf_msg.spi_cmd = (uint8_t)makeMovCmd(gamepad_cmd_buf);
             this->pub.publish(txbuf_msg);
             ros::spinOnce();
         }
@@ -30,7 +36,7 @@ class TempCenterNode
 
 
 int main(int argc, char **argv) {
-    ros::init(argc, argv, "temp_center_node");
+    ros::init(argc, argv, "conv_cmd_node");
 
     TempCenterNode tempcenter_node;
 
