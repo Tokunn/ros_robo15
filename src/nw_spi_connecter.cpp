@@ -9,7 +9,8 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#define IP_ADDR "172.16.14.244"
+//#define IP_ADDR "172.16.14.244"
+#define IP_ADDR "127.0.0.1"
 
 void send_udp(const ros_robo15::Spi_cmd::ConstPtr& txbuf_msg) {
     ROS_DEBUG("nw send 0x%x", txbuf_msg->spi_cmd);
