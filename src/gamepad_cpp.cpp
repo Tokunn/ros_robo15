@@ -42,9 +42,9 @@ int main(int argc, char **argv) {
 
     ros::NodeHandle n;
 
-    ros::Publisher gamepad_cpp_pub = n.advertise<ros_robo15::Gamepad_cmd>("gamepad_cmd", 1000);
+    ros::Publisher gamepad_cpp_pub = n.advertise<ros_robo15::Gamepad_cmd>("gamepad_cmd", 10);
 
-    ros::Rate loop_rate(30);
+    ros::Rate loop_rate(20);
     
     while (ros::ok()) {
 

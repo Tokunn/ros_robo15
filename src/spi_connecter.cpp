@@ -9,14 +9,14 @@
 #define PACKET_SIZE_BYTE 1
 #define BUS 0
 #define DEFAULT_CS 1
-#define SPEED 1000000
+#define SPEED 10000000
 #define MODE 3
 
 class SpiRosTransfer
 {
     public:
         SpiRosTransfer(int tmp_cs) {
-            this->pub = this->n.advertise<ros_robo15::Spi_cmd>("recive_data", 1000);
+            this->pub = this->n.advertise<ros_robo15::Spi_cmd>("recive_data", 10);
             this->sub = this->n.subscribe("send_data", 1000,
                     &SpiRosTransfer::spi_transfer, this);
             this->cs = tmp_cs;

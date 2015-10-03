@@ -11,7 +11,7 @@ class TempCenterNode
 {
     public:
         TempCenterNode() {
-            this->pub = this->n.advertise<ros_robo15::Spi_cmd>("send_data", 1000);
+            this->pub = this->n.advertise<ros_robo15::Spi_cmd>("send_data", 10);
             this->sub = this->n.subscribe("gamepad_cmd", 1000,
                     &TempCenterNode::cmd_temp_transfer, this);
         }
