@@ -100,3 +100,5 @@ target/
 
 #vim
 *.swp
+
+*.backup

@@ -28,8 +28,10 @@ class SpiRosTransfer
 
         void spi_transfer(const ros_robo15::Spi_cmd::ConstPtr& txbuf_msg) {
             ros_robo15::Spi_cmd rxbuf_msg;
-            rxbuf_msg.spi_cmd = 0x5;
-            ROS_DEBUG("spi_transfer");
+
+            ROS_DEBUG("transfer data: Send[0x%x] Recive[0x%x]",
+                    txbuf_msg->spi_cmd, rxbuf_msg.spi_cmd);
+
             this->pub.publish(rxbuf_msg);
             ros::spinOnce();
         }
