@@ -26,7 +26,7 @@ class SpiRosTransfer
 
         int cs;
 
-        void spi_transfer() {
+        void spi_transfer(const ros_robo15::Spi_cmd::ConstPtr& txbuf_msg) {
             ros::spinOnce();
         }
 };
