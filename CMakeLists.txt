@@ -139,6 +139,7 @@ include_directories(
 add_executable(spi_connecter
     src/spi_connecter.cpp
     src/libspi.cpp
+    src/wiringspi.cpp
 )
 add_executable(nw_spi_connecter
     src/nw_spi_connecter.cpp

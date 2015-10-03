@@ -4,6 +4,8 @@
 #include <sstream>
 #include <stdlib.h>
 
+#include "wiringspi.h"
+
 #define PACKET_SIZE_BYTE 1
 #define BUS 0
 
