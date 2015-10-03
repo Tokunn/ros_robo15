@@ -14,7 +14,7 @@ const static uint16_t    spiDelay = 0 ;
 static uint32_t    spiSpeeds [2] ;
 static int         spiFds [2] ;
 
-int wiringPiSPIDataRW (int channel, unsigned char *txbuf, unsigned char *rxbuf, int len)
+int wiringPiSPIDataRW (int channel, const unsigned char *txbuf, unsigned char *rxbuf, int len)
 {
   struct spi_ioc_transfer spi ;
 
