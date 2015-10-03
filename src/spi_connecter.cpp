@@ -8,8 +8,9 @@
 
 #define PACKET_SIZE_BYTE 1
 #define BUS 0
-
-#define DEFAULT_CS 0
+#define DEFAULT_CS 1
+#define SPEED 500000
+#define MODE 3
 
 class SpiRosTransfer
 {
@@ -19,6 +20,7 @@ class SpiRosTransfer
             this->sub = this->n.subscribe("send_data", 1000,
                     &SpiRosTransfer::spi_transfer, this);
             this->cs = tmp_cs;
+            wiringPiSPISetupMode(this->cs, SPEED, MODE);
         }
 
     private:
@@ -30,6 +32,9 @@ class SpiRosTransfer
 
         void spi_transfer(const ros_robo15::Spi_cmd::ConstPtr& txbuf_msg) {
             ros_robo15::Spi_cmd rxbuf_msg;
+
+            wiringPiSPIDataRW(this->cs, &txbuf_msg->spi_cmd,
+                    &rxbuf_msg.spi_cmd, PACKET_SIZE_BYTE);
 
             ROS_DEBUG("transfer data: Send[0x%x] Recive[0x%x]",
                     txbuf_msg->spi_cmd, rxbuf_msg.spi_cmd);
