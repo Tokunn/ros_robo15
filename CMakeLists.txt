@@ -136,10 +136,10 @@ include_directories(
 #)
 
 ## Declare a C++ executable
-#add_executable(spi_connecter
-#    src/spi_connecter.cpp
-#    src/libspi.cpp
-#)
+add_executable(spi_connecter
+    src/spi_connecter.cpp
+    src/libspi.cpp
+)
 add_executable(nw_spi_connecter
     src/nw_spi_connecter.cpp
 )
@@ -165,9 +165,10 @@ add_executable(conv_cmd
 # add_dependencies(ros_robo15_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(spi_connecter
-#   ${catkin_LIBRARIES}
-# )
+ target_link_libraries(spi_connecter
+   ${catkin_LIBRARIES}
+   wiringPi
+ )
  target_link_libraries(nw_spi_connecter
    ${catkin_LIBRARIES}
  )
