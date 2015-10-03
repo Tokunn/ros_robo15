@@ -34,9 +34,12 @@ class SpiRosTransfer
         ros::Subscriber sub;
 
         void spi_transfer(const ros_robo15::Spi_cmd::ConstPtr& txbuf_msg) {
+            ROS_INFO("spi_transfer start");
             uint8_t buf_msg = txbuf_msg->spi_cmd;
 
+            ROS_INFO("wiringPiSPIDataRW start");
             wiringPiSPIDataRW(this->cs, &buf_msg, PACKET_SIZE_BYTE); 
+            ROS_INFO("wiringPiSPIDataRW end");
 
             ros_robo15::Spi_cmd rxbuf_msg;
             rxbuf_msg.spi_cmd = buf_msg;
@@ -44,6 +47,7 @@ class SpiRosTransfer
                     txbuf_msg->spi_cmd, rxbuf_msg.spi_cmd);
             this->pub.publish(rxbuf_msg);
             ros::spinOnce();
+            ROS_INFO("spi_transfer end");
         }
 
         int fd;
