@@ -9,6 +9,8 @@ from ros_robo15.msg import Gamepad_cmd
 
 import get_gamepad
 
+MAX_VALUE = 32767
+
 #----- gamepad_node() -----#
 def gamepad_node():
     #pub = rospy.Publisher('gamepad_data', String, queue_size=10)
@@ -21,17 +23,17 @@ def gamepad_node():
     while not rospy.is_shutdown():
         gamepad_dev.update()
 
-        hello_str = "hello gamepad_node ! %s" % rospy.get_time()
-        rospy.logdebug(hello_str)
-        pub.publish(hello_str)
+        #hello_str = "hello gamepad_node ! %s" % rospy.get_time()
+        #rospy.logdebug(hello_str)
+        #pub.publish(hello_str)
 
 
         gamepad_cmd = Gamepad_cmd()
 
-        gamepad_cmd.left_axis_x = gamepad_dev.left_Axis_X
-        gamepad_cmd.left_axis_y = gamepad_dev.left_Axis_Y
-        gamepad_cmd.right_axis_x = gamepad_dev.rigt_Axis_X
-        gamepad_cmd.right_axis_y = gamepad_dev.rigt_Axis_Y
+        gamepad_cmd.left_axis_x = gamepad_dev.left_Axis_X * MAX_VALUE
+        gamepad_cmd.left_axis_y = gamepad_dev.left_Axis_Y * MAX_VALUE
+        gamepad_cmd.right_axis_x = gamepad_dev.rigt_Axis_X * MAX_VALUE
+        gamepad_cmd.right_axis_y = gamepad_dev.rigt_Axis_Y * MAX_VALUE
 
         gamepad_cmd.button_x = gamepad_dev.Button_X
         gamepad_cmd.button_a = gamepad_dev.Button_A

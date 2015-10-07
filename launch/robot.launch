@@ -19,7 +19,7 @@
     </group>-->
 
     <group ns="gamepad">
-        <remap from="gamepad_cmd" to="/gamepad_cmd"/>
+        <remap from="gamepad" to="/gamepad_cmd"/>
         <node pkg="ros_robo15" name="gamepad_node"
             type="gamepad_node.py" output="screen" />
     </group>
