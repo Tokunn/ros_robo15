@@ -168,7 +168,6 @@ add_executable(conv_cmd
 ## Specify libraries to link a library or executable target against
  target_link_libraries(spi_connecter
    ${catkin_LIBRARIES}
-   wiringPi
  )
  target_link_libraries(nw_spi_connecter
    ${catkin_LIBRARIES}
