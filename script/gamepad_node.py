@@ -14,7 +14,7 @@ def gamepad_node():
     #pub = rospy.Publisher('gamepad_data', String, queue_size=10)
     pub = rospy.Publisher('gamepad', Gamepad_cmd, queue_size=10)
     rospy.init_node('gamepad_node', log_level=rospy.DEBUG, anonymous=True)
-    rate = rospy.Rate(50)
+    rate = rospy.Rate(30)
 
     gamepad_dev = get_gamepad.LogicoolGamepad()
 
