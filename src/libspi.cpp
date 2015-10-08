@@ -77,5 +77,3 @@ SPI::~SPI(void)
 {
 	close(this->fd);
 }
-
-

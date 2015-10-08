@@ -3,20 +3,15 @@
 <launch>
     <env name="ROSCONSOLE_CONFIG_FILE"
         value="$(find ros_robo15)/config/rosconsole.conf" />
-    <env name="PYTHONPATH"
-        value="/home/tokunn/catkin_ws/devel/lib/python3.5/site-packages:/opt/ros/indigo/lib/python3.5/site-packages:/opt/ros/indigo/lib/python2.7/site-packages" />
+    <!--<env name="PYTHONPATH"
+        value="/home/tokunn/catkin_ws/devel/lib/python3.5/site-packages:/opt/ros/indigo/lib/python3.5/site-packages:/opt/ros/indigo/lib/python2.7/site-packages" />-->
     <!--<env name="ROS_IP" value="172.16.14.114" />-->
 
-    <!--<group ns="motor">
+    <group ns="motor">
         <remap from="send_data" to="/send_data"/>
         <node pkg="ros_robo15" name="motor_connecter"
             type="nw_spi_connecter" args="1" output="screen" />
-    </group>-->
-
-    <!--<group ns="sensor">
-        <node pkg="ros_robo15" name="sensor_connecter"
-            type="nw_spi_connecter" args="1" output="screen" />
-    </group>-->
+    </group>
 
     <group ns="gamepad">
         <remap from="gamepad" to="/gamepad_cmd"/>
@@ -30,6 +25,11 @@
         <node pkg="ros_robo15" name="conv_cmd"
             type="conv_cmd" output="screen" />
     </group>
+
+    <!--<group ns="sensor">
+        <node pkg="ros_robo15" name="sensor_connecter"
+            type="nw_spi_connecter" args="1" output="screen" />
+    </group>-->
 
     <!--<group ns="spi_debug">
         <remap from="gamepad_cmd" to="/gamepad_cmd"/>
