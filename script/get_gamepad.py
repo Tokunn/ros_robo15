@@ -54,9 +54,9 @@ class LogicoolGamepad():
 
     def convart_rawvalue(self):
         self.left_Axis_X = self.rounds(self.raw_left_Axis_X)
-        self.left_Axis_Y = self.rounds(self.raw_left_Axis_Y * -1)
+        self.left_Axis_Y = self.rounds(self.raw_left_Axis_Y * 1)
         self.rigt_Axis_X = self.rounds(self.raw_rigt_Axis_X)
-        self.rigt_Axis_Y = self.rounds(self.raw_rigt_Axis_Y * -1)
+        self.rigt_Axis_Y = self.rounds(self.raw_rigt_Axis_Y * 1)
 
         self.Button_X = self.raw_Button_X
         self.Button_A = self.raw_Button_A
