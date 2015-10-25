@@ -26,6 +26,11 @@
             type="conv_cmd" output="screen" />
     </group>
 
+    <group ns="led">
+        <node pkg="ros_robo15" name="led_node"
+            type="led.py" output="screen" />
+    </group>
+
     <!--<group ns="sensor">
         <node pkg="ros_robo15" name="sensor_connecter"
             type="nw_spi_connecter" args="1" output="screen" />
