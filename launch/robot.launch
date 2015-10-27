@@ -5,7 +5,7 @@
         value="$(find ros_robo15)/config/rosconsole.conf" />
     <!--<env name="PYTHONPATH"
         value="/home/tokunn/catkin_ws/devel/lib/python3.5/site-packages:/opt/ros/indigo/lib/python3.5/site-packages:/opt/ros/indigo/lib/python2.7/site-packages" />-->
-    <!--<env name="ROS_IP" value="172.16.14.114" />-->
+    <env name="ROS_IP" value="192.168.7.2" />
 
     <group ns="motor">
         <remap from="send_data" to="/send_data"/>
