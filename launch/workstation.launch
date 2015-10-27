@@ -7,8 +7,12 @@
     <env name="ROS_MASTER_URI"
         value="http://192.168.7.2:11311" />
 
-    <node pkg="rqt_console" name="rqt_console" type="rqt_console" />
+    <!--<node pkg="rqt_console" name="rqt_console" type="rqt_console" />-->
     <node pkg="rqt_graph" name="rqt_graph" type="rqt_graph" />
-    <node pkg="ros_robo15" name="history_node" type="history.py"
-        output="screen" />
+    <group ns="debug">
+        <remap from="gamepad" to="/gamepad_cmd" />
+        <remap from="send_data" to="/send_data" />
+        <node pkg="ros_robo15" name="history_node"
+            type="history.py" output="screen" />
+    </group>
 </launch>
